@@ -1,9 +1,12 @@
+import { useRouter } from "../client/router";
+
 const NavBar = () => {
+  const { navigate } = useRouter();
   return (
     <div>
       <ul>
         <li>
-          <a href="/list">List</a>
+          <button onClick={() => navigate("/list")}>List</button>
         </li>
         <li>
           <a href="/new">New</a>
