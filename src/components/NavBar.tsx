@@ -1,3 +1,7 @@
+"use client";
+
+console.log('RCC logger');
+
 import { useRouter } from "../client/router";
 
 const NavBar = () => {
@@ -9,7 +13,7 @@ const NavBar = () => {
           <button onClick={() => navigate("/list")}>List</button>
         </li>
         <li>
-          <a href="/new">New</a>
+          <button onClick={() => navigate("/new")}>New</button>
         </li>
       </ul>
     </div>

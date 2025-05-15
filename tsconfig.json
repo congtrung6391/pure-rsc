@@ -1,32 +1,35 @@
 {
-  "ts-node": {
-    "experimentalSpecifierResolution": "node",
-    "experimentalResolver": true,
-    "transpileOnly": true,
-    "files": true,
-    "esm": true,
-    "logError": true
-  },
+  // "ts-node": {
+  //   "experimentalSpecifierResolution": "node",
+  //   "experimentalResolver": true,
+  //   "transpileOnly": true,
+  //   "files": true,
+  //   "esm": true,
+  //   "logError": true
+  // },
   "compilerOptions": {
     "lib": ["DOM", "ES2020"],
     "jsx": "react-jsx",
-    "target": "ES2020",
+    "target": "esnext",
     "skipLibCheck": true,
     "useDefineForClassFields": true,
     "allowJs": true,
 
     /* modules */
-    "module": "ESNext",
+    "module": "esnext",
     "isolatedModules": true,
     "resolveJsonModule": true,
     "moduleResolution": "bundler",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
 
+    "outDir": "dist/server",
+
     /* type checking */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["node_modules"]
 }

@@ -1,5 +1,7 @@
 'use client';
 
+console.log('router logger');
+
 import {
   createContext,
   startTransition,
@@ -17,7 +19,7 @@ const RouterContext = createContext<{
   location: string;
   navigate: (loc: string) => void;
   refresh: (res: any) => void;
-}>({
+}>?.({
   location: '/',
   navigate: () => {},
   refresh: () => {},
@@ -26,35 +28,34 @@ const initialCache = new Map();
 
 const Router = () => {
   const [cache, setCache] = useState(initialCache);
-  const [location, setLocation] = useState('/');
+  const [location, setLocation] = useState<string>('/');
 
-  const locationKey = JSON.stringify(location);
-  let content = cache.get(locationKey);
+  let content = cache.get(location);
 
   if (!content) {
     content = createFromFetch(
-      fetch('/rsc?location=' + encodeURIComponent(locationKey)),
+      fetch('/rsc?location=' + encodeURIComponent(location)),
     );
-    cache.set(locationKey, content);
+    cache.set(location, content);
   }
+
+  function navigate(nextLocation: string) {
+    startTransition(() => {
+      setLocation(nextLocation);
+    });
+  }
+
 
   function refresh(response: any) {
     startTransition(() => {
       const nextCache = new Map();
       if (response != null) {
         const locationKey = response.headers.get('X-Location');
-        const nextLocation = JSON.parse(locationKey);
         const nextContent = createFromReadableStream(response.body);
         nextCache.set(locationKey, nextContent);
-        navigate(nextLocation);
+        navigate(locationKey);
       }
       setCache(nextCache);
-    });
-  }
-
-  function navigate(nextLocation: string) {
-    startTransition(() => {
-      setLocation(nextLocation);
     });
   }
 
@@ -64,6 +65,7 @@ const Router = () => {
     </RouterContext.Provider>
   );
 };
+
 
 export function useRouter() {
   return useContext(RouterContext);

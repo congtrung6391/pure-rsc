@@ -5,7 +5,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 const Root = () => {
   return (
     <ErrorBoundary FallbackComponent={Error}>
-      <div>bootstrap</div>
+      <div>This message is from script after shell</div>
       <Router />
     </ErrorBoundary>
   );
