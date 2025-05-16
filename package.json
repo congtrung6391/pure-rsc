@@ -1,11 +1,11 @@
 {
-  "name": "rsbuild",
+  "name": "pure-rsc",
   "version": "1.0.0",
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "NODE_OPTIONS='--conditions react-server' nodemon src/server/index.cjs",
-    "wp:dev": "webpack --watch",
+    "dev:server": "NODE_OPTIONS='--conditions react-server' nodemon src/server/index.cjs",
+    "dev:client": "webpack --watch",
     "format": "prettier --write .",
     "lint": "eslint ."
   },

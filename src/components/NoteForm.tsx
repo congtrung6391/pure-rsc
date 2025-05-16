@@ -1,5 +1,9 @@
 import createNoteAction from "./createNodeAction";
 
+/**
+ * TODO: Implement callServer to allow client call a server action
+ * Implement this in router
+ **/
 
 const NoteForm = async () => {
   console.log("Note form render here");
